@@ -8,15 +8,15 @@ import { PostProvider } from "@/contexts/PostContext";
 const Page = () => {
   
   return (
-      <div className="bg-gradient-to-r from-blue-500 to-cyan-500 min-h-screen">
+      <div className="bg-gradient-to-r from-sky-500 to-purple-500 min-h-screen">
         <PostProvider >
         <div className="container mx-auto ">
-        <Header />
-        <PostList />
-        <Footer />
+          <Header />
+          <PostList />
+          <Footer />
         
-      </div>
-      </PostProvider>
+        </div>
+        </PostProvider>
       </div>
   );
 };
