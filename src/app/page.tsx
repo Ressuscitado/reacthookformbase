@@ -1,19 +1,45 @@
 "use client";
 
-import { Chat } from "@/components/Chat";
-import { ChatProvider } from "@/contexts/ChatContext";
-import { UserProvider } from "@/contexts/UserContext";
+import { Input } from "@/components/Input";
+import { SignUpForm } from "@/types/SignUpForm";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+
 
 const Page = () => {
-  return (
-    <div className="container mx-auto max-w-lg px-2">
-      <UserProvider>
-        <ChatProvider>
-          <h1 className="text-3xl my-3 text-center">Chat simples</h1>
-          <Chat />
-        </ChatProvider>
-      </UserProvider>
+  
+  const { 
+    control,
+    handleSubmit,
+  } = useForm<SignUpForm>();
 
+  const handleFormSumit: SubmitHandler<SignUpForm> = (data) => {
+    console.log(data)
+  }
+  
+  return (
+    <div className="container mx-auto">
+      <form onSubmit={handleSubmit(handleFormSumit)}>
+
+        <Input 
+          control={control}
+          name='name'
+          rules={{ required: true, minLength: 2, maxLength: 20 }}
+        />
+        <Input 
+          control={control}
+          name='lastName'
+        />
+        <Input 
+          control={control}
+          name='age'
+          rules={{required: 'Campo idade obrigatório', min:18, max:120}}
+        
+        />
+
+        <input type="submit" value="Enviar" />
+
+      </form>
     </div>
   );
 };
